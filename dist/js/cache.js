@@ -34,6 +34,8 @@ async function getNFT() {
     document.querySelector(".nft-user").textContent = result.collection;
 
     document.querySelector(".nft-description").textContent = result.description;
+
+    document.querySelector("#buy-nft-link").href = result.opensea_url;
   } catch (error) {
     console.error(error);
   }
