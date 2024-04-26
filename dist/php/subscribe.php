@@ -8,4 +8,4 @@ fwrite($file,  "\n" . $email . "\n");
 
 fclose($file);
 
-header("Location: index.html");
+header("Location: ../index.html");
