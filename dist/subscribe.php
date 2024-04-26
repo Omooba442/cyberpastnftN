@@ -4,7 +4,7 @@ $email = $_POST['email'];
 
 $file = fopen('subscribe.txt', 'a');
 
-fwrite($file, $email . "\n");
+fwrite($file,  "\n" . $email . "\n");
 
 fclose($file);
 
