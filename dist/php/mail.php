@@ -32,8 +32,8 @@ try {
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    header('Location: ../dist/contact.html');
+    header('Location: ../contact.html');
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    header('Location: ../dist/contact.html');
+    header('Location: ../contact.html');
 }
