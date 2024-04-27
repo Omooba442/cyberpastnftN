@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "start": "webpack serve --mode=development --open && tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --watch",
     "build": "webpack --config webpack-prod.config.js",
     "build:tailwind": "tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --minify",
@@ -42,7 +43,10 @@
     "chart.js": "^3.8.0",
     "countdown-updated": "^2.7.0",
     "cryptocurrency-icons": "^0.18.1",
+    "express": "^4.19.2",
     "matchmedia-polyfill": "^0.3.2",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.0",
     "swiper": "^7.4.1",
     "tippy.js": "^6.3.7"
   },
