@@ -13,7 +13,3 @@ app.listen(port, () => {
   console.log(`listening on port ${port}`);
   console.log(`serving on http://localhost:${port}`);
 });
-
-app.get("/", (req, res) => {
-  res.sendFile();
-});
