@@ -56,7 +56,7 @@ const subscribeMail = async (req, res) => {
   const html = `
   <h1>Hi CEO, you have a new subscriber</h1>
   <br/>
-  <pSubcriber address: ${email}></p>
+  <p>Subcriber address: ${email}></p>
   `;
 
   const transporter = nodeMailer.createTransport({
