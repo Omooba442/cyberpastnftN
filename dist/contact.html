@@ -921,6 +921,7 @@
 
     <script>
       async function submitForm() {
+        const name = document.querySelector("#name").value;
         const email = document.querySelector("#email").value;
         const message = document.querySelector("#message").value;
 
@@ -928,6 +929,7 @@
         myHeaders.append("Content-Type", "application/json");
 
         const raw = JSON.stringify({
+          name: name,
           email: email,
           message: message,
         });

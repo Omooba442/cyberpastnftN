@@ -20,4 +20,6 @@ app.listen(port, () => {
   console.log(`serving on http://localhost:${port}`);
 });
 
-module.exports = { app };
+module.exports = {
+  app,
+};
