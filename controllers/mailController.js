@@ -43,8 +43,7 @@ const sendMail = async (req, res) => {
 
   console.log("Message sent: " + info.messageId);
 
-  if (reciepientMail(name, email))
-    return res.json({ success: "message sent successfully" });
+  return res.json({ success: "message sent successfully" });
 };
 
 const subscribeMail = async (req, res) => {
@@ -81,37 +80,6 @@ const subscribeMail = async (req, res) => {
 
   return res.json({ success: "message sent successfully" });
 };
-
-async function reciepientMail(name, email) {
-  const html = `
-    <h1 style="color: green;">Dear ${name},</h1>
-    <br />
-    <div class="line-height: 2.1;">
-      We have recieved your message, we will get back to you as soon as possible.
-    </div>
-  `;
-
-  const transporter = nodeMailer.createTransport({
-    host: "smtp.hostinger.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "admin@cyberpastnft.com",
-      pass: "Ad54k0hn@.a",
-    },
-  });
-
-  const info = await transporter.sendMail({
-    from: "CyberpastNFT Support <admin@cyberpastnft.com>",
-    to: `${email}`,
-    subject: "Contact Message Recieved",
-    html: html,
-  });
-
-  console.log("Message sent: " + info.messageId);
-
-  return true;
-}
 
 module.exports = {
   sendMail,
