@@ -546,7 +546,7 @@
               <p class="mb-16 text-lg leading-normal dark:text-jacarta-300">
                 Have a question? Need help? Don't hesitate, drop us a line
               </p>
-              <form id="contact-form" method="post" action="php/mail.php">
+              <form id="contact-form" method="POST" action="/contact">
                 <div class="flex space-x-7">
                   <div class="mb-6 w-1/2">
                     <label
@@ -918,6 +918,46 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      async function submitForm() {
+        const email = document.querySelector("#email").value;
+        const message = document.querySelector("#message").value;
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+          email: email,
+          message: message,
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        try {
+          const response = await fetch("/contact", requestOptions);
+          const result = await response.json();
+          if (result.success) {
+            window.location.reload();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      // Call the submitForm function when the form is submitted
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+          submitForm();
+        });
+    </script>
 
     <!-- JS Scripts -->
     <script src="./js/app.bundle.js"></script>
