@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "vercel-build": "nodemon app.js",
+    "vercel-build": "echo hello",
     "start": "webpack serve --mode=development --open && tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --watch",
     "build": "webpack --config webpack-prod.config.js",
     "build:tailwind": "tailwindcss -i ./src/css/style.css -o ./dist/css/style.css --minify",
