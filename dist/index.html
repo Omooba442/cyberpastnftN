@@ -626,12 +626,18 @@
           </p>
 
           <div class="mx-auto mt-10 max-w-md text-center">
-            <form class="relative" action="php/subscribe.php" method="post">
+            <form
+              class="relative"
+              action="/subscribe"
+              method="post"
+              id="subscribe-form"
+            >
               <input
                 type="email"
                 placeholder="Email address"
                 class="w-full rounded-full border border-jacarta-600 bg-jacarta-700 py-3 px-4 text-white placeholder-white focus:ring-accent"
                 name="email"
+                id="sub-email"
               />
               <button
                 type="submit"
@@ -1189,6 +1195,44 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      async function submitForm() {
+        const email = document.querySelector("#sub-email").value;
+
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+          email: email,
+        });
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        try {
+          const response = await fetch("/subscribe", requestOptions);
+          const result = await response.json();
+          if (result.success) {
+            window.location.reload();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      // Call the submitForm function when the form is submitted
+      document
+        .getElementById("subscribe-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+          submitForm();
+        });
+    </script>
 
     <!-- JS Scripts -->
     <script src="./js/app.bundle.js"></script>

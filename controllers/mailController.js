@@ -1,7 +1,5 @@
 const nodeMailer = require("nodemailer");
 
-// send mail async function
-
 const sendMail = async (req, res) => {
   const { email, message } = req.body;
 
@@ -43,6 +41,42 @@ const sendMail = async (req, res) => {
   return res.json({ success: "message sent successfully" });
 };
 
+const subscribeMail = async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: "No recipient email provided" });
+  }
+
+  const html = `
+  <h1>Hi CEO, you have a new subscriber</h1>
+  <br/>
+  <pSubcriber address: ${email}></p>
+  `;
+
+  const transporter = nodeMailer.createTransport({
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "admin@cyberpastnft.com",
+      pass: "Ad54k0hn@.a",
+    },
+  });
+
+  const info = await transporter.sendMail({
+    from: "CyberpastNFT Support <admin@cyberpastnft.com>",
+    to: "subscribe@cyberpastnft.com",
+    subject: "New Subscriber",
+    html: html,
+  });
+
+  console.log("Message sent: " + info.messageId);
+
+  return res.json({ success: "message sent successfully" });
+};
+
 module.exports = {
   sendMail,
+  subscribeMail,
 };

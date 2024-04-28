@@ -1,6 +1,6 @@
 // Importing required modules
 const express = require("express");
-const { sendMail } = require("./controllers/mailController");
+const { sendMail, subscribeMail } = require("./controllers/mailController");
 const http = require("http");
 const path = require("path");
 
@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.post("/contact", sendMail);
+app.post("/subscribe", subscribeMail);
 
 const port = 3000;
 
